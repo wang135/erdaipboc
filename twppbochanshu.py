@@ -126,7 +126,7 @@ class Twopeople:
         return PC05BS02, PC05BS03
 
     ###逾期期数
-    def yuqi_shi(amount):
+    def yuqi_shi(self,amount):
 
         if 'PD01C' in amount.keys():
             # list_max_yuqi = []
@@ -143,3 +143,13 @@ class Twopeople:
         else:
             max_yuqishijian = 0
             return max_yuqishijian
+
+    ###贷款当前的具体数据
+    def now_yuqi(self,amount,timedate):
+        list_status= []
+        if "PD01E" in amount.keys():
+            PD01EH = amount['PD01E']['PD01EH']
+            for ii in PD01EH:
+                D01ED01 = ii["D01ED01"]
+                list_status.append(D01ED01)
+
